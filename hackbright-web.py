@@ -32,15 +32,19 @@ def student_add():
 
 @app.route("/add-student")
 def student_add():
-
-    first_name = request.form.args("firstname") # passing on name value from form to get the data
-    last_name = request.form.args("lastname")
-    GitHub = request.form.args("new_github")
-
-    hackbright.make_new_student(first_name, last_name, github) # from hackbright.py file
     """Add a student."""
 
-    return  render_template()
+    first_name = request.form["firstname"] # passing on name value from form to get the data
+    last_name = request.form["lastname"]
+    GitHub = request.form["new_github"]
+
+    hackbright.make_new_student(first_name, last_name, Github) # from hackbright.py file
+    
+    html = render_template('student_info_display.html',
+                            first_name=first_name,
+                            last_name=last_name,
+                            Github=github)
+    return html
 
 
 if __name__ == "__main__":
